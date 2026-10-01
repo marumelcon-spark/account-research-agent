@@ -1,0 +1,18 @@
+account_name,hq_location,employee_band,revenue_band,ownership,identity_provider,tech_stack_notes,data_source
+Petco,"San Diego, CA",10000+,$5B+,Public,Microsoft Entra ID,"Microsoft 365, ServiceNow, Salesforce",mock_enrichment_v1
+Dexcom,"San Diego, CA",5000-10000,$1B-5B,Public,Okta,"AWS, GitHub, Jira, Workday",mock_enrichment_v1
+Viasat,"Carlsbad, CA",5000-10000,$1B-5B,Public,Microsoft Entra ID,"Azure, SAP, ServiceNow",mock_enrichment_v1
+Sharp HealthCare,"San Diego, CA",10000+,$1B-5B,Nonprofit,Microsoft Entra ID,"Epic, Microsoft 365",mock_enrichment_v1
+Duolingo,"Pittsburgh, PA",500-1000,$500M-1B,Public,Okta,"Google Workspace, AWS, Slack",mock_enrichment_v1
+Chime,"San Francisco, CA",1000-5000,$1B-5B,Public,Okta,"AWS, Snowflake, Slack",mock_enrichment_v1
+Zillow,"Seattle, WA",5000-10000,$1B-5B,Public,Okta,"AWS, Kubernetes, Terraform, HashiCorp Vault (pilot)",mock_enrichment_v1
+Carvana,"Tempe, AZ",10000+,$5B+,Public,,"Azure, Salesforce",mock_enrichment_v1
+Peloton,"New York, NY",1000-5000,$1B-5B,Public,Okta,"AWS, Google Workspace",mock_enrichment_v1
+Instacart (Maplebear),"San Francisco, CA",1000-5000,$1B-5B,Public,Okta,"AWS, Snowflake, Slack",mock_enrichment_v1
+Squarespace,"New York, NY",1000-5000,$1B-5B,Private (PE-owned),Google Workspace,"GCP, Slack",mock_enrichment_v1
+Rivian,"Irvine, CA",10000+,$1B-5B,Public,Microsoft Entra ID,"AWS, SAP",mock_enrichment_v1
+Patagonia,"Ventura, CA",1000-5000,$1B-5B,Private,,,mock_enrichment_v1
+Wayfair,"Boston, MA",10000+,$5B+,Public,Okta,"GCP, Kubernetes, Salesforce",mock_enrichment_v1
+Etsy,"Brooklyn, NY",1000-5000,$1B-5B,Public,Okta,"GCP, GitHub",mock_enrichment_v1
+JetBlue,"Long Island City, NY",10000+,$5B+,Public,Microsoft Entra ID,"Azure, SAP, ServiceNow",mock_enrichment_v1
+Harborline Freight Co.,"National City, CA",250-500,$50M-100M,Private,,Google Workspace,mock_enrichment_v1

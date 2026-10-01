@@ -1,0 +1,13 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets (keys live in environment variables, never in files)
+.env
+
+# Run logs (full raw tool results; regenerate with run_batch.py)
+logs/
+
+# Personal study notes
+*.docx

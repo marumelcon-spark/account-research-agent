@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief review: after_fix</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 0; padding: 24px; background: #f6f6f4; color: #222; }
+  h1 { margin-top: 0; }
+  table { border-collapse: collapse; }
+  th, td { padding: 6px 10px; border-bottom: 1px solid #ddd; text-align: left; }
+  td { text-align: center; font-weight: 600; }
+  .summary { background: #fff; margin-bottom: 32px; }
+  .avg th, .avg td { border-top: 2px solid #999; }
+  section { background: #fff; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; }
+  .pair { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 24px; }
+  .brief { white-space: pre-wrap; font-family: Consolas, monospace; font-size: 13px; line-height: 1.45;
+           background: #fafafa; padding: 12px; border-radius: 6px; max-height: 80vh; overflow: auto; margin: 0; }
+  aside { position: sticky; top: 16px; align-self: start; }
+  .notes { font-size: 14px; line-height: 1.5; }
+  .s5 { background: #d7eed8; } .s4 { background: #e8f3d6; } .s3 { background: #fbeec8; }
+  .s2 { background: #f8d9c4; } .s1 { background: #f3c2c2; } .na { color: #888; font-weight: 400; }
+  .was { font-weight: 400; font-size: 12px; color: #555; }
+  @media (max-width: 800px) { .pair { grid-template-columns: 1fr; } aside { position: static; } }
+</style></head><body>
+<h1>Brief review: after_fix (compared with baseline)</h1>
+<p>Scores 1-5 per <code>evaluation/RUBRIC.md</code>. Brief on the left, scores and reasons on the right.</p>
+<table class="summary"><tr><th>Account</th><th>groundedness</th><th>completeness</th><th>actionability</th><th>signal quality</th><th>failure handling</th></tr><tr><th>Wayfair</th><td class="s4">4 <span class="was">(was 3)</span></td><td class="s3">3 <span class="was">(was 5)</span></td><td class="s3">3 <span class="was">(was 4)</span></td><td class="s2">2 <span class="was">(was 4)</span></td><td class="s5">5 <span class="was">(was 4)</span></td></tr><tr><th>JetBlue</th><td class="s4">4</td><td class="s5">5</td><td class="s4">4</td><td class="s4">4</td><td class="s5">5</td></tr><tr><th>Zillow</th><td class="s4">4 <span class="was">(was 5)</span></td><td class="s5">5 <span class="was">(was 4)</span></td><td class="s5">5</td><td class="s4">4 <span class="was">(was 2)</span></td><td class="s4">4</td></tr><tr><th>Rivian</th><td class="s4">4 <span class="was">(was 3)</span></td><td class="s5">5</td><td class="s4">4 <span class="was">(was 3)</span></td><td class="s4">4</td><td class="s5">5</td></tr><tr><th>Harborline Freight Co.</th><td class="s5">5</td><td class="s4">4</td><td class="s4">4</td><td class="na">n/a</td><td class="s5">5</td></tr><tr class='avg'><th>Average</th><td>4.2 <span class="was">(was 4.0)</span></td><td>4.4 <span class="was">(was 4.6)</span></td><td>4.0 <span class="was">(was 4.0)</span></td><td>3.5 <span class="was">(was 3.5)</span></td><td>4.8 <span class="was">(was 4.6)</span></td></tr></table>
+
+<section>
+  <h2>Harborline Freight Co.</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Harborline Freight Co.
+
+## 1. Deal snapshot
+- Stage: New business – Discovery [1]
+- ARR: Not on file (null) [1]
+- Close/renewal date: 2026-12-05 [1]
+- Owner: Alex Kim [1]
+- Champion: Operations Manager (name not on file) [1]
+- Last activity: 2026-09-12, inbound demo request from website [1]
+- Rep notes: Small regional logistics firm; dispatch team currently shares passwords via spreadsheet; team is worried about a recent phishing attempt [1]
+- Product interest: &quot;Business&quot; tier [1]
+
+## 2. Company context
+- HQ: National City, CA [2]
+- Size: 250–500 employees band (CRM lists 450) [1][2]
+- Revenue band: $50M–100M [2]
+- Ownership: Private [2]
+- Identity provider: Not on file (unknown) [2]
+- Tech stack: Google Workspace [2]
+
+## 3. Recent signals
+No relevant recent news found. Web searches for &quot;Harborline Freight Co.&quot; returned results about unrelated entities — a dissolved Colorado LLC, an apparel Instagram account, a Chinese tire manufacturer, a third-party pentest training exercise referencing a similarly named company, and unrelated personal posts. None were verifiably about this account, so none are included as facts.
+
+## 4. Risks and open questions
+- ARR and identity provider are both unknown — important gaps for sizing and SSO integration planning [1][2].
+- Champion&#x27;s actual name is missing; only the &quot;Operations Manager&quot; title is on file — confirm who the economic buyer/champion is before the call [1].
+- Deal is very early stage (Discovery) with no ARR yet; qualify budget and timeline given the Dec 5, 2026 target date [1].
+- No verified recent public news on this company; treat any assumptions about financial health, leadership, or incidents as unknown, not confirmed [web search].
+- Inference: The password-sharing-via-spreadsheet practice plus a recent phishing scare suggests active pain and urgency, which could support a faster sales cycle — but this is based only on rep notes, not confirmed incident data [1].
+
+## 5. Talking points
+1. Ask about the recent phishing attempt — understand what happened and what it exposed, since it&#x27;s flagged as a live concern [1].
+2. Address the dispatch team&#x27;s shared-spreadsheet password practice directly — a clear, tangible risk to lead with [1].
+3. Confirm identity/SSO setup — enrichment data doesn&#x27;t show a provider, so ask what they use today alongside Google Workspace [2].
+4. Given the small size (450 employees, $50–100M revenue, private) [1][2], position the &quot;Business&quot; tier as right-sized rather than enterprise-heavy.
+5. Inference: Since this is an inbound demo request (not outbound prospecting), the Operations Manager champion likely already has some internal buy-in — worth probing who else needs to sign off before Dec 5 [1].
+
+## Sources
+[1] crm_accounts.csv, ACC-017
+[2] firmographics.csv (mock_enrichment_v1)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s5">5</td></tr><tr><th>completeness</th><td class="s4">4</td></tr><tr><th>actionability</th><td class="s4">4</td></tr><tr><th>signal quality</th><td class="na">n/a</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Unchanged quality: rejected all look-alikes (incl. harborline.cn labeled &#x27;name match: confirm&#x27;). One filler risk line (&#x27;treat any assumptions... as unknown&#x27;). Better talking point 5 (inbound lead implies some buy-in, labeled Inference).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>JetBlue</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: JetBlue
+
+## 1. Deal snapshot
+- Stage: Renewal – 50 days out [1]
+- Product interest: Enterprise [1]
+- ARR: $156,000 [1]
+- Renewal date: 2026-11-17 [1]
+- Owner: Marcus Bell [1]
+- Champion: Director of IT Security [1]
+- Last activity: 2026-09-19, call with procurement [1]
+- Rep notes: Conflicting entries — 9/05 note says the champion (Director of IT Security) left the company; 9/19 note says the champion joined a procurement call. Flagged as &quot;needs verification&quot; [1].
+
+## 2. Company context
+- HQ: Long Island City, NY [2]
+- Employees: 10,000+ (CRM lists 23,000) [2][1]
+- Revenue band: $5B+, Public company [2]
+- Identity provider: Microsoft Entra ID [2]
+- Tech stack: Azure, SAP, ServiceNow [2]
+
+## 3. Recent signals
+1. Q2 2026 results: JetBlue introduced a long-term target of at least $1.00 EPS by 2028, citing progress from its &quot;JetForward&quot; turnaround strategy [3].
+2. Q1 2026 results: RASM up 6.5% YoY, $2.2B operating revenue (up 4.7% YoY), elevated fuel costs called out as an ongoing challenge [4][5].
+3. FY2025 Q4 results: JetForward targeting $310M of additional incremental EBIT in 2026 [6].
+4. JetBlue&#x27;s Q2 2026 earnings materials list &quot;data security compliance&quot; and &quot;automated systems&quot; reliability among named risk factors in forward-looking statements [7].
+5. (unverified) Social post recapping Q1 2026 results, incl. 23% capacity growth in Fort Lauderdale and 19% growth in loyalty cash remuneration — consistent with official Q1 release but sourced from a non-verified social page [8].
+
+No JetBlue-specific news found on CISO changes, breaches, or security leadership; the &quot;Director of IT Security&quot; departure claim is not corroborated by any web result.
+
+## 4. Risks and open questions
+- Unresolved CRM conflict: is the Director of IT Security (champion) still employed and engaged, or did they leave? 9/19 activity suggests engagement, but 9/05 note says departure — verify before the call [1].
+- No account owner change flagged, but champion turnover risk could stall renewal if unresolved before 11/17 close date.
+- Employee count mismatch: CRM shows 23,000 [1] vs. firmographic band &quot;10000+&quot; [2] — likely just a banding difference, not a true conflict. Inference: not a red flag, just different granularity.
+- Company is publicly emphasizing cost control and fuel-cost pressure amid its JetForward turnaround [3][4] — Inference: budget scrutiny could affect renewal negotiations.
+- No security-incident or CISO-turnover news found; can&#x27;t confirm or rule out staffing changes in IT security beyond the CRM note.
+
+## 5. Talking points
+1. Confirm current status/contact info for the Director of IT Security given the internal note conflict — critical before renewal conversations [1].
+2. JetBlue&#x27;s public JetForward strategy is about disciplined cost control and margin recovery [3][6] — Inference: position renewal value in terms of efficiency/ROI, not just feature expansion.
+3. Microsoft Entra ID is their identity provider [2] — confirm current integration/SSO compatibility as a renewal talking point.
+4. Company explicitly names &quot;data security compliance&quot; as a risk factor in its own earnings disclosures [7] — useful opening to discuss security posture investment.
+5. Last logged activity (procurement call, 9/19) suggests active deal motion continues despite the champion-status ambiguity [1].
+
+## Sources
+[1] crm_accounts.csv, ACC-016
+[2] firmographics.csv (mock_enrichment_v1)
+[3] JetBlue Announces Second Quarter 2026 Results - https://ir.jetblue.com/news/news-details/2026/JetBlue-Announces-Second-Quarter-2026-Results/default.aspx (company_site, 2026)
+[4] JetBlue Announces First Quarter 2026 Results - https://ir.jetblue.com/news/news-details/2026/JetBlue-Announces-First-Quarter-2026-Results/default.aspx (company_site, 2026)
+[5] JetBlue Airways Q2 2026 Earnings Call Transcript - Fortune - https://fortune.com/company/jetblue-airways/earnings/q2-2026 (major_news)
+[6] JetBlue Announces Fourth Quarter 2025 Results - https://ir.jetblue.com/news/news-details/2026/JetBlue-Announces-Fourth-Quarter-2025-Results/default.aspx (company_site, 2026)
+[7] JetBlue Announces Second Quarter 2026 Results (risk factors excerpt) - https://ir.jetblue.com/news/news-details/2026/JetBlue-Announces-Second-Quarter-2026-Results/default.aspx (company_site, 2026)
+[8] Aero Crew News - JetBlue Q1 2026 update - https://www.facebook.com/aerocrewnews/posts/jetblue-updatejetblue-just-announced-their-financial-results-for-q1-2026pre-tax-/1496465645766154 (unverified: social/video)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s4">4</td></tr><tr><th>completeness</th><td class="s5">5</td></tr><tr><th>actionability</th><td class="s4">4</td></tr><tr><th>signal quality</th><td class="s4">4</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Groundedness up in practice: official investor-relations releases and Fortune now carry the facts; the Facebook post stays in signals, marked unverified. Slip: [3] and [7] are the same URL. Lost this morning&#x27;s best signal (CISO move to Travelers did not come up in search). Strong new point: JetBlue&#x27;s own risk factors name &#x27;data security compliance&#x27;.</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Rivian</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Rivian
+
+## 1. Deal snapshot
+- **Stage:** New business - Qualification [1]
+- **ARR:** Not on file (not yet a customer) [1]
+- **Close/renewal date:** 2027-02-10 [1]
+- **Owner:** Alex Kim [1]
+- **Champion:** Not on file [1]
+- **Last activity:** Not on file [1]
+- **Rep notes:** Not on file [1]
+- **Product interest:** Enterprise [1]
+
+## 2. Company context
+- **HQ:** Irvine, CA [2]
+- **Employees:** 10,000+ (CRM lists ~15,000) [1][2]
+- **Revenue band:** $1B-5B [2]
+- **Ownership:** Public [2]
+- **Identity provider:** Microsoft Entra ID [2]
+- **Tech stack:** AWS, SAP [2]
+
+## 3. Recent signals
+1. Rivian laid off hundreds of workers (&lt;2% of staff) in June 2026, one week after launching R2 SUV deliveries, as it works toward profitability — CNBC, June 16, 2026 [3]
+2. Layoffs reportedly hit customer and service teams, raising questions about prior overhiring — CleanTechnica, June 16, 2026 [4]
+3. Rivian pushed back its first-profit target from 2027; Q1 2026 gross profit was $199M, down $87M YoY, with a $62M automotive segment gross loss — Work Truck Online / Electrek, June 2026 [5][6]
+4. Rivian agreed to pay $250M to settle a class-action lawsuit over IPO vehicle-cost disclosures — WSJ, 2026 [7]
+5. Rivian&#x27;s 2026 adjusted losses are projected at $1.8B-$2.1B with capex of $1.95B-$2.05B, following $2.1B in adjusted losses last year — IEN, 2026 [8]
+
+No security-incident-specific news found; searches returned general company/financial news instead.
+
+## 4. Risks and open questions
+- No champion, last activity, or rep notes on file — deal appears to have little to no documented engagement yet. **Open question: confirm current relationship status.**
+- No ARR recorded, consistent with &quot;New business - Qualification&quot; stage — deal is early-stage. [1]
+- Recent layoffs (customer/service teams) and cost-cutting pressure could affect budget appetite or buying timeline. [3][4]
+- Company is absorbing a $250M litigation settlement and heavy losses ($1.8-2.1B projected for 2026) — Inference: this may tighten security tooling budgets or, conversely, increase appetite for risk-reduction if tied to compliance/IPO scrutiny. [7][8]
+- Employee count discrepancy: CRM shows 15,000 vs. firmographic &quot;10,000+&quot; band — not necessarily contradictory, but worth confirming current headcount post-layoffs. [1][2]
+
+## 5. Talking points
+1. Rivian uses Microsoft Entra ID for identity — worth confirming if MFA/passwordless is already deployed or a current gap. [2]
+2. Given ongoing cost discipline (layoffs, delayed profitability target), position password security as a way to reduce breach/helpdesk costs rather than a big new spend. [3][5] Inference: framing.
+3. With a public company facing fresh litigation exposure ($250M IPO settlement), strengthening security posture and reducing credential-related risk could resonate with risk/compliance stakeholders. [7]
+4. No champion identified yet — first call should focus on identifying the right economic buyer/security stakeholder given the qualification stage. [1] Inference.
+5. AWS/SAP stack suggests enterprise-scale infrastructure; ask about current SSO/credential management practices across these systems. [2]
+
+## Sources
+[1] crm_accounts.csv, ACC-012
+[2] firmographics.csv (mock_enrichment_v1)
+[3] &quot;Rivian laying off hundreds of workers amid R2 launch&quot; - https://www.cnbc.com/2026/06/16/rivian-layoffs.html (June 16, 2026) - major_news
+[4] &quot;Rivian Pursues Financial Sustainability with Layoffs&quot; - https://cleantechnica.com/2026/06/16/rivian-pursues-financial-sustainability-with-layoffs (June 16, 2026) - other
+[5] &quot;Rivian Layoffs Will Not Impact Production Workers, R2 Has Launched&quot; - https://www.worktruckonline.com/news/rivian-layoffs-will-not-impact-production-workers-r2-has-launched - other
+[6] &quot;Rivian lays off hundreds, under 2% of staff, a week after R2 launch&quot; - https://electrek.co/2026/06/16/rivian-layoffs-r2-launch-profitability (June 16, 2026) - other
+[7] &quot;Rivian to Pay $250M to Settle Lawsuit Over Vehicle-Cost Disclosure in IPO Documents&quot; - https://www.wsj.com/business/autos/rivian-to-pay-250m-to-settle-lawsuit-over-vehicle-cost-disclosure-in-ipo-documents-58f61702 (2026) - major_news
+[8] &quot;Rivian Expects to Make a Lot More Vehicles in 2026&quot; - https://www.ien.com/operations/news/22960618/rivian-expects-to-make-a-lot-more-vehicles-in-2026 - other</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s4">4 <span class="was">(was 3)</span></td></tr><tr><th>completeness</th><td class="s5">5</td></tr><tr><th>actionability</th><td class="s4">4 <span class="was">(was 3)</span></td></tr><tr><th>signal quality</th><td class="s4">4</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Rule 3 now holds: no blog/LinkedIn CISO name, no &#x27;one-year contract&#x27; tip; every signal dated and from credible outlets (CNBC, WSJ, Electrek). Remaining slip: Q1 figures cited to Work Truck Online + Electrek together (possible misattribution). Talking points less generic than baseline.</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Wayfair</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Wayfair
+
+## 1. Deal snapshot
+- Stage: Renewal – 75 days out [1]
+- ARR: $210,000 [1]
+- Renewal date: 2026-12-12 [1]
+- Owner: Jamie Reyes [1]
+- Champion: VP Information Security [1]
+- Last activity: 2026-09-14, executive sponsor meeting [1]
+- Rep notes: Largest account in territory; executive sponsor is very engaged and asking about the AI-agent credential management roadmap [1]
+- Product interest: Enterprise + SSO/SCIM [1]
+
+## 2. Company context
+- HQ: Boston, MA [2]
+- Size: 10,000+ employees (CRM lists 12,000) [1][2]; Revenue band $5B+ [2]
+- Ownership: Public [2]
+- Identity provider: Okta [2]
+- Tech stack: GCP, Kubernetes, Salesforce [2]
+
+## 3. Recent signals
+- Former Wayfair security leader (Global Head of Cybersecurity, Privacy and IT Risk) Marnie Wilking has since moved to Booking.com as CISO, per her current bio [3]. No publish date is available on this source, so recency within the past 12 months cannot be confirmed. Inference: this suggests a leadership transition in Wayfair&#x27;s security org at some point; the current CRM champion title (&quot;VP Information Security&quot;) may reflect a successor role.
+- A third-party blog discusses &quot;Wayfair and Cloudflare&quot; layoffs, but this is an unverified blog source with no date (unverified) [4].
+- No major/company-site or dated news items on Wayfair earnings, strategy, or leadership changes were found in this search pass.
+
+## 4. Risks and open questions
+- Leadership continuity: unclear if the security leadership change noted in signal #1 affects the current &quot;VP Information Security&quot; champion relationship — worth confirming champion is still in role and engaged (last logged activity, 2026-09-14, suggests yes) [1][3].
+- Layoffs signal is from an unverified blog with no date; cannot be used to assess budget risk without stronger corroboration [4].
+- No firmographic gaps (missing_fields empty) [2], but no confirmation of current CISO/VP name or tenure.
+- Renewal is 75 days out with a large ARR base — confirm budget owner and any procurement/security review timeline given company size ($5B+ revenue, public company) [1][2].
+
+## 5. Talking points
+- Lead with the AI-agent credential management roadmap the exec sponsor has already asked about — directly matches recent CRM engagement [1].
+- Wayfair runs Okta for identity — confirm SSO/SCIM integration plans align with their existing IdP investment [2].
+- As the largest account in territory with strong exec engagement, propose a renewal-planning session ahead of the Dec 12 date [1].
+- Inference: Given possible security leadership transition, it may be worth tactfully confirming who currently owns the security/IT risk mandate to ensure continuity through renewal.
+
+## Sources
+[1] crm_accounts.csv, ACC-014
+[2] firmographics.csv (mock_enrichment_v1)
+[3] Marnie Wilking | RSAC Conference - https://www.rsaconference.com/experts/marnie-wilking (other, no date)
+[4] Botched Layoffs: 4 Leadership Lessons from the Wayfair and Cloudflare Cuts - https://levertalent.com/blog/botched-layoffs-4-leadership-lessons-from-the-wayfair-and-cloudflare-cuts (unverified: blog, no date)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s4">4 <span class="was">(was 3)</span></td></tr><tr><th>completeness</th><td class="s3">3 <span class="was">(was 5)</span></td></tr><tr><th>actionability</th><td class="s3">3 <span class="was">(was 4)</span></td></tr><tr><th>signal quality</th><td class="s2">2 <span class="was">(was 4)</span></td></tr><tr><th>failure handling</th><td class="s5">5 <span class="was">(was 4)</span></td></tr></table>
+      <p class="notes">REGRESSION. The new &#x27;general news&#x27; query was keyword-stuffed (&#x27;Wayfair news 2026 earnings layoffs leadership strategy&#x27;) and returned spam/junk sites; only 2 searches ran. Lost the Google UCP agentic-commerce hook and the TIME/CTO item. Good: unverified blog kept out of talking points; honestly said no major news found. One risk line still mentions the unverified blog (to dismiss it).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Zillow</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Zillow
+
+## 1. Deal snapshot
+- Stage: Expansion - Discovery [1]
+- Product interest: Secrets Automation [1]
+- ARR: $140,000 (existing Enterprise customer) [1]
+- Close/renewal date: 2026-12-01 [1]
+- Owner: Alex Kim [1]
+- Champion: Director of DevOps [1]
+- Last activity: 2026-09-11, workshop on secrets management for DevOps [1]
+- Rep notes: Evaluating us vs. HashiCorp Vault for secrets management; DevOps team prefers our UX, but security architecture team prefers Vault [1]
+
+## 2. Company context
+- HQ: Seattle, WA [2]
+- Size: 5,000–10,000 employees (CRM lists 6,000) [1][2]; Revenue band $1B–5B [2]
+- Ownership: Public [2]
+- Identity provider: Okta [2]
+- Tech stack: AWS, Kubernetes, Terraform, HashiCorp Vault (pilot) [2] — confirms rep notes that Vault is already in use, likely the internal incumbent security architecture is pushing for
+
+## 3. Recent signals
+1. Q2 2026 earnings: revenue $772M (+18% YoY); mortgage revenue up 75% to $84M; net loss of $4M despite segment growth — &quot;Housing Super App&quot; strategy highlighted [3].
+2. Zillow reaffirmed FY2026 financial outlook and highlighted an &quot;AI-native housing platform strategy&quot; at its AI Summit for Investors, March 24, 2026 [4].
+3. Stock-analysis commentary notes Zillow &quot;Reshuffles Leadership with New Executive Appointments&quot; alongside a Q2 quarterly loss — headline only, no detail on which roles changed [5].
+4. Analyst commentary flags competitive pressure from CoStar in residential listings and antitrust/legal scrutiny tied to a Redfin-related securities class action [5].
+5. (unverified) A security-blog piece references a past AI failure at Zillow as a cautionary case study — not confirmed as company-official, include only as unverified context [6].
+
+## 4. Risks and open questions
+- Internal split between DevOps (favors us) and security architecture (favors Vault) is the central deal risk [1].
+- No CISO or security-leadership contact identified in search results; unclear who owns final security tooling decision — gap to fill before call.
+- Leadership reshuffle mentioned in analyst commentary [5] is vague; unknown if it affects security/DevOps org — worth asking champion directly.
+- Renewal/close date (2026-12-01) is ~2 months out; discovery stage timeline is tight given competing vendor evaluation.
+- Company is navigating legal/antitrust scrutiny [5] — could affect budget scrutiny or procurement pace; not confirmed to impact this deal.
+
+## 5. Talking points
+1. Zillow already runs Vault in pilot alongside Terraform/Kubernetes on AWS [2] — position our tool as complementary/migration-friendly rather than rip-and-replace, addressing security team&#x27;s Vault familiarity.
+2. DevOps has already engaged in a hands-on workshop (9/11) [1] — build on that momentum by proposing a joint session with the security architecture team to address their concerns directly.
+3. Inference: Given Zillow&#x27;s &quot;AI-native platform&quot; and Super App strategy emphasis [3][4], frame secrets automation as enabling secure scaling of their expanding AI/infrastructure footprint.
+4. Ask champion about the leadership reshuffle mentioned externally [5] to see if it affects the security architecture stakeholder or budget owner.
+5. With close date 12/1, propose a clear evaluation timeline now to avoid losing momentum to Vault.
+
+## Sources
+[1] crm_accounts.csv, ACC-007
+[2] firmographics.csv (mock_enrichment_v1)
+[3] &quot;Zillow says its &#x27;Housing Super App&#x27; strategy is working&quot; - https://www.housingwire.com/articles/zillow-q2-2026-earnings (other)
+[4] &quot;Zillow Group to highlight AI-native housing platform strategy at AI Summit for Investors&quot; - https://zillowgroup.mediaroom.com/2026-03-24-Zillow-Group-to-highlight-AI-native-housing-platform-strategy-at-AI-Summit-for-Investors (company_site, name match confirmed – Zillow Group official newsroom)
+[5] &quot;Zillow Group (NasdaqGS:ZG) Stock Forecast &amp; Analyst Predictions&quot; - https://simplywall.st/stocks/us/real-estate-management-and-development/nasdaq-zg/zillow-group/future (other)
+[6] &quot;5 Real AI Failures That Every Organization Can Learn From&quot; - https://www.klogixsecurity.com/blog/5-real-ai-failures-that-every-organization-can-learn-from (unverified: blog)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s4">4 <span class="was">(was 5)</span></td></tr><tr><th>completeness</th><td class="s5">5 <span class="was">(was 4)</span></td></tr><tr><th>actionability</th><td class="s5">5</td></tr><tr><th>signal quality</th><td class="s4">4 <span class="was">(was 2)</span></td></tr><tr><th>failure handling</th><td class="s4">4</td></tr></table>
+      <p class="notes">BIG IMPROVEMENT on signal (2 -&gt; 4): the general-news search found Q2 earnings, the AI-native platform strategy (official newsroom) and a leadership reshuffle. A stock-analysis site (&#x27;other&#x27;) supports one risk and one talking point; acceptable but weak. Talking points remain excellent (Vault pilot, joint session with security architecture).</p>
+    </aside>
+  </div>
+</section>
+</body></html>

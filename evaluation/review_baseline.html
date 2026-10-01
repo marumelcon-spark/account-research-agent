@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brief review: baseline</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; margin: 0; padding: 24px; background: #f6f6f4; color: #222; }
+  h1 { margin-top: 0; }
+  table { border-collapse: collapse; }
+  th, td { padding: 6px 10px; border-bottom: 1px solid #ddd; text-align: left; }
+  td { text-align: center; font-weight: 600; }
+  .summary { background: #fff; margin-bottom: 32px; }
+  .avg th, .avg td { border-top: 2px solid #999; }
+  section { background: #fff; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; }
+  .pair { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 24px; }
+  .brief { white-space: pre-wrap; font-family: Consolas, monospace; font-size: 13px; line-height: 1.45;
+           background: #fafafa; padding: 12px; border-radius: 6px; max-height: 80vh; overflow: auto; margin: 0; }
+  aside { position: sticky; top: 16px; align-self: start; }
+  .notes { font-size: 14px; line-height: 1.5; }
+  .s5 { background: #d7eed8; } .s4 { background: #e8f3d6; } .s3 { background: #fbeec8; }
+  .s2 { background: #f8d9c4; } .s1 { background: #f3c2c2; } .na { color: #888; font-weight: 400; }
+  .was { font-weight: 400; font-size: 12px; color: #555; }
+  @media (max-width: 800px) { .pair { grid-template-columns: 1fr; } aside { position: static; } }
+</style></head><body>
+<h1>Brief review: baseline</h1>
+<p>Scores 1-5 per <code>evaluation/RUBRIC.md</code>. Brief on the left, scores and reasons on the right.</p>
+<table class="summary"><tr><th>Account</th><th>groundedness</th><th>completeness</th><th>actionability</th><th>signal quality</th><th>failure handling</th></tr><tr><th>Wayfair</th><td class="s3">3</td><td class="s5">5</td><td class="s4">4</td><td class="s4">4</td><td class="s4">4</td></tr><tr><th>JetBlue</th><td class="s4">4</td><td class="s5">5</td><td class="s4">4</td><td class="s4">4</td><td class="s5">5</td></tr><tr><th>Zillow</th><td class="s5">5</td><td class="s4">4</td><td class="s5">5</td><td class="s2">2</td><td class="s4">4</td></tr><tr><th>Rivian</th><td class="s3">3</td><td class="s5">5</td><td class="s3">3</td><td class="s4">4</td><td class="s5">5</td></tr><tr><th>Harborline Freight Co.</th><td class="s5">5</td><td class="s4">4</td><td class="s4">4</td><td class="na">n/a</td><td class="s5">5</td></tr><tr class='avg'><th>Average</th><td>4.0</td><td>4.6</td><td>4.0</td><td>3.5</td><td>4.6</td></tr></table>
+
+<section>
+  <h2>Harborline Freight Co.</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Harborline Freight Co.
+
+## 1. Deal snapshot
+- Stage: New business – Discovery [1]
+- ARR: Not on file (null) [1]
+- Close/renewal date: 2026-12-05 [1]
+- Owner: Alex Kim [1]
+- Champion: Operations Manager (name not on file) [1]
+- Last activity: 2026-09-12, inbound demo request from website [1]
+- Rep notes: Small regional logistics firm; dispatch team currently shares a spreadsheet of passwords; team is worried about a recent phishing attempt [1]
+
+## 2. Company context
+- HQ: National City, CA [2]
+- Size: 450 employees (band 250–500); revenue band $50M–$100M [1][2]
+- Ownership: Private [2]
+- Identity provider: Not on file (unknown) [2]
+- Tech stack: Google Workspace [2]
+
+## 3. Recent signals
+No relevant recent news found. Web searches for &quot;Harborline Freight phishing attack 2026&quot; and &quot;Harborline Freight Co. news 2026&quot; returned only unrelated companies (a dissolved Colorado LLC, an apparel Instagram account, a Chinese tire manufacturer, and a generic third-party pentest lab listing) — none clearly about this account, so none are cited here [per grounding rule 7].
+
+## 4. Risks and open questions
+- No account owner engagement history beyond one inbound demo request — deal is early-stage (Discovery), risk of low urgency/budget clarity.
+- ARR and identity provider are both unknown — need to confirm budget scope and whether SSO/Google Workspace integration is required.
+- Champion is only identified by title (Operations Manager), no name — confirm decision-making authority and whether IT/security has a seat at the table.
+- Rep notes mention a &quot;recent phishing attempt&quot; but no corroborating public reporting was found — treat as internal/anecdotal only, verify details on the call.
+- Small company (450 employees) — check for budget constraints typical of this revenue band ($50M–$100M).
+
+## 5. Talking points
+1. Ask about the recent phishing attempt referenced in notes — use it to quantify urgency and cost of inaction [1].
+2. Address the shared dispatch-team password spreadsheet directly as a core risk password-security tools solve [1].
+3. Given Google Workspace as the existing stack [2], confirm whether SSO/identity integration is a requirement and clarify current identity provider status (unknown) [2].
+4. Inference: As a 450-employee private logistics firm [1][2], budget cycles may be lean — worth probing budget authority and timeline before the Dec 5 close date [1].
+5. Confirm who besides the Operations Manager (champion) needs to be involved, since no IT/security stakeholder is listed [1].
+
+## Sources
+[1] crm_accounts.csv, ACC-017
+[2] firmographics.csv (mock_enrichment_v1)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s5">5</td></tr><tr><th>completeness</th><td class="s4">4</td></tr><tr><th>actionability</th><td class="s4">4</td></tr><tr><th>signal quality</th><td class="na">n/a</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Strong: rejected 4 look-alike results, no invented facts. Signal quality not scored (fictional company, nothing to find). Weak: generic risks (&#x27;budget constraints typical of this revenue band&#x27;).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>JetBlue</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: JetBlue
+
+## 1. Deal snapshot
+- Stage: Renewal – 50 days out [1]
+- ARR: $156,000 [1]
+- Renewal date: 2026-11-17 [1]
+- Owner: Marcus Bell [1]
+- Champion: Director of IT Security [1]
+- Last activity: 2026-09-19, call with procurement [1]
+- Rep notes: Internal conflict — 9/05 entry states the champion (Director of IT Security) left the company; 9/19 entry says the champion joined a procurement call. Not yet verified which is accurate [1].
+
+## 2. Company context
+- HQ: Long Island City, NY [2]
+- Size: 23,000 employees (CRM) [1]; employee band 10,000+, revenue band $5B+ (firmographic) [2]
+- Ownership: Public [2]
+- Identity provider: Microsoft Entra ID [2]
+- Tech stack: Azure, SAP, ServiceNow [2]
+
+## 3. Recent signals
+1. A former JetBlue security executive, Anderson, who &quot;most recently served as Vice President, Technology&quot; at JetBlue, was named CISO at Travelers — undated article [3]. Inference: title differs from the CRM&#x27;s &quot;Director of IT Security,&quot; so this may or may not be the same champion; treat as a lead to confirm, not confirmation.
+2. JetBlue reported a Q1 2026 net loss of $319M, wider than the $208M loss a year earlier, missing Wall Street estimates [4].
+3. JetBlue CEO stated on CNBC (Jan 29, 2026) that &quot;2026 is going to be JetBlue&#x27;s year&quot; [5] — general sentiment, low direct relevance.
+4. No article found that directly confirms a departure of JetBlue&#x27;s &quot;Director of IT Security&quot; by name.
+
+## 4. Risks and open questions
+- Unresolved internal conflict: is the champion still at JetBlue? CRM notes contradict each other (9/05 &quot;left&quot; vs. 9/19 &quot;joined procurement call&quot;) [1].
+- Possible external corroboration of a security leader exit: a former JetBlue VP of Technology security exec moved to Travelers, but title mismatch means this can&#x27;t be confirmed as the same person [3] — needs verification before assuming champion loss.
+- Financial pressure: JetBlue&#x27;s widening Q1 2026 net loss [4] could tighten budget scrutiny ahead of a $156K renewal — Inference: worth probing procurement&#x27;s tone on cost.
+- Champion title/identity not verified — could affect renewal approval path if champion has changed roles or left.
+
+## 5. Talking points
+1. Confirm with procurement whether the Director of IT Security is still engaged, given the conflicting internal notes [1].
+2. Ask if the named executive who moved to Travelers was JetBlue&#x27;s security lead — clarify reporting line and title to resolve ambiguity [3].
+3. Given JetBlue&#x27;s wider Q1 2026 loss [4], be prepared to reinforce ROI/cost-efficiency messaging for the renewal.
+4. Note fit with Microsoft Entra ID as identity provider [2] — confirm integration/SSO requirements still hold for renewal scope.
+5. Inference: With renewal only 50 days out and champion status uncertain, prioritize identifying the current economic buyer before finalizing renewal terms.
+
+## Sources
+[1] crm_accounts.csv, ACC-016
+[2] firmographics.csv (mock_enrichment_v1)
+[3] &quot;Travelers Adds Former JetBlue Security Executive as CISO&quot; - https://nationalcioreview.com/cxos-on-the-move/travelers-adds-former-jetblue-security-executive-as-ciso (undated)
+[4] &quot;JetBlue Q1 2026 earnings miss as losses widen&quot; - https://finance.yahoo.com/markets/stocks/articles/jetblue-q1-2026-earnings-miss-123240577.html (2026-04-28)
+[5] &quot;JetBlue CEO: 2026 is going to be JetBlue&#x27;s year&quot; - https://www.cnbc.com/video/2026/01/29/jetblue-ceo-2026-is-going-to-be-jetblues-year.html (2026-01-29)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s4">4</td></tr><tr><th>completeness</th><td class="s5">5</td></tr><tr><th>actionability</th><td class="s4">4</td></tr><tr><th>signal quality</th><td class="s4">4</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Strong: CRM conflict shown both ways; Travelers CISO move kept as a lead with title mismatch flagged. Weak: filler signal #4 (&#x27;No article found...&#x27;); TP2 awkward (asking procurement about another company&#x27;s hire).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Rivian</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Rivian
+
+## 1. Deal snapshot
+- Stage: New business – Qualification [1]
+- Product interest: Enterprise [1]
+- ARR: Not on file (not yet a customer) [1]
+- Close/renewal date: 2027-02-10 [1]
+- Owner: Alex Kim [1]
+- Champion: Not on file [1]
+- Last activity: Not on file [1]
+- Rep notes: Not on file [1]
+
+## 2. Company context
+- HQ: Irvine, CA [2]
+- Size: 15,000 employees (CRM) [1]; enrichment shows 10,000+ band, revenue $1B–$5B [2]
+- Ownership: Public [2]
+- Identity provider: Microsoft Entra ID [2]
+- Tech stack: AWS, SAP [2]
+
+## 3. Recent signals
+1. Rivian laid off hundreds of workers (under 2% of staff) in June 2026, one week after launching R2 SUV deliveries, as it works to narrow losses; follows ~600 layoffs (4.5% of staff) in Oct 2025 [3][4].
+2. Q1 2026 results showed gross profit of $199M (down $87M YoY) and an automotive segment gross loss of $62M [5].
+3. Rivian agreed to pay $250M to settle a class-action lawsuit over IPO vehicle-cost disclosures (cash + D&amp;O insurance) [6].
+4. Rivian projects 2026 adjusted losses of $1.8B–$2.1B and capex of $1.95B–$2.05B [7].
+5. (Unverified) A blog/podcast source names &quot;Mike Johnson&quot; as Rivian&#x27;s CISO, citing his security-leadership commentary and a vendor-negotiation tip (1-year contract preference); also referenced in LinkedIn posts (unverified/social media) [8][9][10].
+
+## 4. Risks and open questions
+- No champion identified and no logged last activity in CRM — deal may be stalled or under-resourced [1].
+- ARR is null; company is not yet a customer, so this is a net-new logo pursuit [1].
+- Financial pressure: recurring layoffs and large projected losses could affect budget appetite for new enterprise security spend [3][4][7].
+- CISO identity (&quot;Mike Johnson&quot;) is only sourced from blogs/social media — not verified via CRM or press release; confirm before referencing by name [8][9][10].
+- Litigation settlement ($250M) may be consuming leadership bandwidth/cash near-term [6].
+- Tech stack (AWS, SAP, Entra ID) fit for password-security pitch is not confirmed by rep notes — no internal validation on file [1][2].
+
+## 5. Talking points
+- Rivian&#x27;s public losses and cost-cutting (layoffs in Oct 2025 and June 2026) suggest a possible ROI/efficiency angle for security spend — Inference: lead with cost-avoidance/risk-reduction framing rather than premium positioning [3][4].
+- With Microsoft Entra ID as IdP, discuss integration/SSO compatibility [2].
+- If security leadership contact is confirmed, vendor conversations reportedly favor shorter (1-year) commitments over 3-year upfront deals — Inference: structure proposal flexibly [8].
+- Given no champion or recent activity on file, first call should focus on identifying a champion and current pain points [1].
+
+## Sources
+[1] crm_accounts.csv, ACC-012
+[2] firmographics.csv (mock_enrichment_v1)
+[3] &quot;Rivian laying off hundreds of workers amid R2 launch&quot; - https://www.cnbc.com/2026/06/16/rivian-layoffs.html (June 16, 2026)
+[4] &quot;Rivian lays off hundreds, under 2% of staff, a week after R2 launch&quot; - https://electrek.co/2026/06/16/rivian-layoffs-r2-launch-profitability (June 16, 2026)
+[5] &quot;Rivian Layoffs Will Not Impact Production Workers, R2 Has Launched&quot; - https://www.worktruckonline.com/news/rivian-layoffs-will-not-impact-production-workers-r2-has-launched (2026)
+[6] &quot;Rivian to Pay $250M to Settle Lawsuit Over Vehicle-Cost Disclosure in IPO Documents&quot; - https://www.wsj.com/business/autos/rivian-to-pay-250m-to-settle-lawsuit-over-vehicle-cost-disclosure-in-ipo-documents-58f61702 (2026)
+[7] &quot;Rivian Expects to Make a Lot More Vehicles in 2026&quot; - https://www.ien.com/operations/news/22960618/rivian-expects-to-make-a-lot-more-vehicles-in-2026 (2026)
+[8] (unverified, blog) &quot;Best Cybersecurity Podcasts for CISOs in 2026&quot; - https://cycode.com/blog/best-cybersecurity-podcasts-for-cisos
+[9] (unverified, blog) &quot;The Cool and Not-So-Cool of RSA 2026&quot; - https://cisoseries.com/rsa-conference-best-and-worst
+[10] (unverified, social media) Mike Johnson LinkedIn posts - https://www.linkedin.com/posts/mikevj_cybersecurity-summer-2026-internships-in-activity-7399249855107354624-YSVW</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s3">3</td></tr><tr><th>completeness</th><td class="s5">5</td></tr><tr><th>actionability</th><td class="s3">3</td></tr><tr><th>signal quality</th><td class="s4">4</td></tr><tr><th>failure handling</th><td class="s5">5</td></tr></table>
+      <p class="notes">Strong: every blank CRM field flagged; layoffs/losses/settlement found. Weak: rule 3 broken, a talking point and a risk rest on unverified blogs/LinkedIn (CISO name, &#x27;1-year contract&#x27; tip); [5] title doesn&#x27;t match the Q1 figures it&#x27;s cited for (possible misattribution).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Wayfair</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Wayfair
+
+## 1. Deal snapshot
+- Stage: Renewal – 75 days out; renewal date 2026-12-12 [1]
+- ARR: $210,000 [1]
+- Product interest: Enterprise + SSO/SCIM [1]
+- Owner: Jamie Reyes [1]
+- Champion: VP, Information Security [1]
+- Last activity: 2026-09-14 executive sponsor meeting [1]
+- Rep notes: Largest account in territory; exec sponsor engaged and asking about AI-agent credential management roadmap [1]
+
+## 2. Company context
+- HQ: Boston, MA; Public company; ~10,000+ employees; revenue band $5B+ [2]
+- Identity provider: Okta [2]
+- Tech stack: GCP, Kubernetes, Salesforce [2]
+
+## 3. Recent signals
+1. Fiona Tan named CTO on TIME&#x27;s inaugural &quot;Executives of the Year: Tech and Data&quot; list (Sept 22, 2026) [3]
+2. Google Cloud case study describes Wayfair piloting AI-powered discovery tools (Muse) and co-developing Google&#x27;s Universal Commerce Protocol (UCP), an open standard for secure interactions between AI agents and retailer platforms [4] — directly relevant to the champion&#x27;s AI-agent credential management question noted in CRM [1]
+3. Marnie Wilking&#x27;s RSA Conference bio lists &quot;Global Head of Cybersecurity, Privacy and IT Risk for Wayfair&quot; as a *previous* role; she is now Chief Security Officer at Booking.com [5] — implies a past security-leadership change at Wayfair, timing unclear
+4. Law firm Strauss Borrelli filed a WARN Act investigation related to Wayfair layoffs (Oct 20, 2025) [6]
+
+## 4. Risks and open questions
+- Leadership continuity: Marnie Wilking, formerly Wayfair&#x27;s top cybersecurity/IT risk leader, is now at Booking.com [5]; not confirmed whether the current CRM champion (&quot;VP Information Security&quot;) is her successor or a separate role — needs verification before the call.
+- Possible past layoffs (WARN Act investigation, Oct 2025) [6] could affect budget authority or headcount on the security team; no confirmation this overlaps with the security org specifically.
+- Wayfair&#x27;s public push into agentic AI/UCP [4] raises the credential-management stakes the champion is already asking about — good expansion angle, but confirm our roadmap answer before the meeting.
+- No CRM field on competitor tooling or current SSO/SCIM integration status beyond Okta as IdP [2]; worth confirming scope of &quot;Enterprise + SSO/SCIM&quot; interest.
+- No relevant recent news found specifically confirming a security incident at Wayfair (search on &quot;breach&quot; returned unrelated recall/fintech stories) [web_search results largely off-topic].
+
+## 5. Talking points
+1. Lead with AI-agent credential management: Wayfair is publicly building toward AI-agent commerce via UCP with Google Cloud [4], which validates the exec sponsor&#x27;s roadmap question [1] — position our AI-agent credential features directly against this initiative.
+2. Confirm current security org chart, given Marnie Wilking&#x27;s move to Booking.com [5] — ensure we&#x27;re aligned with the actual decision-maker.
+3. Reinforce fit with existing Okta SSO investment [2] when discussing SSO/SCIM expansion [1].
+4. Inference: Recognition of CTO Fiona Tan on TIME&#x27;s tech leadership list [3] suggests continued exec-level visibility for tech/security initiatives — good moment to propose an executive briefing tie-in.
+5. Inference: If WARN Act layoffs [6] touched security/IT, budget conversations may need added flexibility — probe gently on the call.
+
+## Sources
+[1] crm_accounts.csv, ACC-014
+[2] firmographics.csv (mock_enrichment_v1)
+[3] TIME Names Inaugural List of Executives of the Year: Tech and Data - https://time.com/article/2026/09/22/time-names-inaugural-list-of-executives-of-the-year-tech-and-data (Sept 22, 2026)
+[4] Wayfair case study - https://cloud.google.com/customers/wayfair-ai (undated)
+[5] Marnie Wilking bio - https://www.rsaconference.com/experts/marnie-wilking (undated)
+[6] Wayfair WARN Act Investigation - Strauss Borrelli PLLC - https://straussborrelli.com/2025/10/20/wayfair-warn-act-investigation (Oct 20, 2025)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s3">3</td></tr><tr><th>completeness</th><td class="s5">5</td></tr><tr><th>actionability</th><td class="s4">4</td></tr><tr><th>signal quality</th><td class="s4">4</td></tr><tr><th>failure handling</th><td class="s4">4</td></tr></table>
+      <p class="notes">Strong: Google UCP agentic-commerce hook tied to champion&#x27;s AI-agent question; security leader (Wilking) move found. Weak: a law-firm solicitation page [6] (not marked unverified) drives a risk and a talking point; one citation is not a number (&#x27;[web_search results largely off-topic]&#x27;).</p>
+    </aside>
+  </div>
+</section>
+<section>
+  <h2>Zillow</h2>
+  <div class="pair">
+    <pre class="brief"># Pre-call brief: Zillow
+
+## 1. Deal snapshot
+- **Stage:** Expansion - Discovery [1]
+- **ARR:** $140,000 [1]
+- **Close/renewal date:** 2026-12-01 [1]
+- **Owner:** Alex Kim [1]
+- **Champion:** Director of DevOps [1]
+- **Last activity:** 2026-09-11 — workshop on secrets management for DevOps [1]
+- **Rep notes:** Existing Enterprise customer; evaluating us vs. HashiCorp Vault for secrets management. DevOps team prefers our UX, but the security architecture team prefers Vault [1].
+
+## 2. Company context
+- **HQ:** Seattle, WA [2]
+- **Size:** 6,000 employees per CRM [1]; enrichment shows 5,000–10,000 employee band, $1B–5B revenue band [2]
+- **Ownership:** Public [2]
+- **Identity provider:** Okta [2]
+- **Relevant tech stack:** AWS, Kubernetes, Terraform, and HashiCorp Vault (currently in pilot) [2]
+
+## 3. Recent signals
+No relevant recent news found. Web searches for Zillow secrets management/Vault activity, general security news, and CISO/DevOps leadership changes returned only unrelated, low-quality, or off-topic results (unrelated companies, generic blogs, or non-security leadership items such as a new legal chief mention) [3]. None met the bar for a reliable, on-topic signal.
+
+## 4. Risks and open questions
+- Competitive risk: Vault is already piloted internally and has a champion in the security architecture team, while our champion is in DevOps — internal split could stall or kill expansion [1][2].
+- Open question: Who owns the final buying decision — DevOps or security architecture — and what would it take to win over the latter?
+- Data gap: No named individual for the &quot;Director of DevOps&quot; champion or security architecture counterpart on file [1].
+- Data gap: No recent public news corroborates or contradicts the internal Vault-vs-us narrative; can&#x27;t confirm if Vault pilot has expanded or stalled externally.
+- Inference: Given Okta as IdP and AWS/Kubernetes/Terraform stack, integration story should emphasize compatibility with existing Okta SSO and Terraform workflows [2].
+
+## 5. Talking points
+1. Reinforce UX advantage already recognized by DevOps from the 9/11 workshop — ask what specifically resonated and what objections remain [1].
+2. Directly address the Vault pilot: ask what criteria the security architecture team is using to evaluate Vault vs. us, and offer a head-to-head technical session [1][2].
+3. Highlight integration with their existing Okta SSO and Terraform-based infrastructure as a differentiator/reducer of migration friction [2].
+4. Inference: Since Zillow is already an Enterprise customer, frame this as a low-risk expansion (add-on to existing trusted relationship) rather than a rip-and-replace of Vault.
+5. Ask directly about decision timeline relative to the 2026-12-01 renewal date to ensure expansion and renewal conversations are aligned [1].
+
+## Sources
+[1] crm_accounts.csv, ACC-007
+[2] firmographics.csv (mock_enrichment_v1)
+[3] Web search results for &quot;Zillow HashiCorp Vault OR secrets management 2026&quot;, &quot;Zillow security news 2026&quot;, and &quot;Zillow CISO OR DevOps leadership 2026&quot; — no on-topic, reliable results found (queried 2026-09-30)</pre>
+    <aside>
+      <table class="scores"><tr><th>groundedness</th><td class="s5">5</td></tr><tr><th>completeness</th><td class="s4">4</td></tr><tr><th>actionability</th><td class="s5">5</td></tr><tr><th>signal quality</th><td class="s2">2</td></tr><tr><th>failure handling</th><td class="s4">4</td></tr></table>
+      <p class="notes">Strong: sharp competitive talking points on Vault pilot vs DevOps preference. Weak: all 3 searches were security-only, so NO company news found for a large public company; a &#x27;source&#x27; [3] that is just a list of queries.</p>
+    </aside>
+  </div>
+</section>
+</body></html>
